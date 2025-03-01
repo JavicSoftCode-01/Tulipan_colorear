@@ -1,498 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://cdn5.dibujos.net/dibujos/pintados/202408/tulipan-naturaleza-flores-12764309.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Tulipanes</title>
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: "Times New Roman", sans-serif;
-            text-align: center;
-            background-color: #1a001a;
-            color: #fff;
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath fill='blue' d='M20 6.91L17.09 4a2.92 2.92 0 0 0-4.11 0L2.25 14.73a1 1 0 0 0-.25.61V20a1 1 0 0 0 1 1h4.66a1 1 0 0 0 .61-.25L19 10.02a2.92 2.92 0 0 0 0-4.11zM7.02 19H4v-3.02l9.73-9.73 3.02 3.02z'/%3E%3C/svg%3E") 0 32, auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tulipanes</title>
+  
+  <!-- Favicon (opcional, puedes guardarlo en assets/images/ si lo deseas) -->
+  <link
+    rel="icon"
+    href="https://cdn5.dibujos.net/dibujos/pintados/202408/tulipan-naturaleza-flores-12764309.jpg"
+    type="image/x-icon"
+  />
 
-        .carousel-container {
-            position: relative;
-            max-width: 800px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
+  <!-- Font Awesome (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
 
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item {
-            min-width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(128, 0, 128, 0.7);
-            border: none;
-            color: white;
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 50%;
-            font-size: 20px;
-            z-index: 2;
-        }
-
-        .prev {
-            left: 10px;
-        }
-
-        .next {
-            right: 10px;
-        }
-
-        #colores-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border: 2px solid white;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .color-option:hover {
-            transform: scale(1.2);
-        }
-
-        .tulipan {
-            width: 300px;
-            height: 400px;
-            padding-bottom: 20px;
-            border-radius: 5%;
-            background-color: #311A31;
-            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-        }
-
-        .paintable {
-            transition: fill 0.5s ease;
-        }
-
-        .paintable:hover {
-            filter: brightness(1.2);
-        }
-
-        .sparkle {
-            position: absolute;
-            pointer-events: none;
-            animation: sparkle 1s linear forwards;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            position: relative;
-            background-color: #2a002a;
-            margin: 10% auto;
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 90%;
-            width: 500px;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
-            animation: scaleIn 0.3s ease;
-        }
-
-        .close-modal {
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-size: 24px;
-            color: white;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px;
-        }
-
-        .close-modal:hover {
-            color: #ff69b4;
-        }
-
-        .modal img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 10px 0;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes sparkle {
-            0% {
-                transform: scale(0) rotate(0deg);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5) rotate(180deg);
-                opacity: 0;
-            }
-        }
-
-        .mensaje-amor {
-            font-size: 24px;
-            color: #ff69b4;
-            margin: 20px 0;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .modal-content {
-                margin: 5% auto;
-                width: 85%;
-            }
-
-            .mensaje-amor {
-                font-size: 20px;
-            }
-        }
-    </style>
+  <!-- Enlace a tu hoja de estilos -->
+  <link rel="stylesheet" href="./css/styles.css" />
 </head>
+
 <body>
-<h1>🌷Tulipanes Mágicos</h1>
+  <h1>🌷Tulipanes Mágicos</h1>
 
-<a href="index.html" title="Borrar">🗑️</a>
+  <!-- Botón que "resetea" o recarga la página -->
+  <a href="index.html" title="Borrar">🗑️</a>
 
-<div class="carousel-container">
+  <!-- Contenedor del carrusel -->
+  <div class="carousel-container">
     <button class="carousel-button prev">←</button>
     <button class="carousel-button next">→</button>
     <div class="carousel">
-        <!-- Carrusel de tulipanes -->
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <path class="paintable petalo" d="M100,50 Q80,20 60,50 Q40,20 20,50 Q0,20 0,80 Q0,140 100,180"
-                      fill="white"/>
-                <path class="paintable petalo" d="M100,50 Q120,20 140,50 Q160,20 180,50 Q200,20 200,80 Q200,140 100,180"
-                      fill="white"/>
-                <rect class="paintable tallo" x="90" y="180" width="20" height="120" fill="white"/>
-                <path class="paintable hoja" d="M50,200 Q10,150 50,100" fill="white"/>
-                <path class="paintable hoja" d="M150,200 Q190,150 150,100" fill="white"/>
-            </svg>
-        </div>
+      <!-- Carrusel de tulipanes (cada SVG es un "slide") -->
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <path class="paintable petalo" d="M100,50 Q80,20 60,50 Q40,20 20,50 Q0,20 0,80 Q0,140 100,180" fill="white"/>
+          <path class="paintable petalo" d="M100,50 Q120,20 140,50 Q160,20 180,50 Q200,20 200,80 Q200,140 100,180" fill="white"/>
+          <rect class="paintable tallo" x="90" y="180" width="20" height="120" fill="white"/>
+          <path class="paintable hoja" d="M50,200 Q10,150 50,100" fill="white"/>
+          <path class="paintable hoja" d="M150,200 Q190,150 150,100" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <!-- Pétalos externos -->
-                <path class="paintable petalo" d="M100,40
-              C140,40 160,70 160,100
-              C160,130 140,160 100,170
-              C60,160 40,130 40,100
-              C40,70 60,40 100,40
-              Z" fill="white"/>
-                <!-- Pétalos internos -->
-                <path class="paintable petalo-interno" d="M100,50
-              C130,50 145,75 145,100
-              C145,125 130,150 100,160
-              C70,150 55,125 55,100
-              C55,75 70,50 100,50
-              Z" fill="white"/>
-                <!-- Tallo principal -->
-                <path class="paintable tallo" d="M95,170
-              C95,200 95,250 95,290
-              L105,290
-              C105,250 105,200 105,170
-              Z" fill="white"/>
-                <!-- Hojas con nervaduras -->
-                <path class="paintable hoja" d="M95,200
-              Q45,180 65,140
-              Q75,130 85,180
-              Z" fill="white"/>
-                <path class="paintable hoja" d="M105,220
-              Q155,200 135,160
-              Q125,150 115,200
-              Z" fill="white"/>
-            </svg>
-        </div>
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <!-- Pétalos externos -->
+          <path class="paintable petalo" d="M100,40 C140,40 160,70 160,100 C160,130 140,160 100,170 C60,160 40,130 40,100 C40,70 60,40 100,40 Z" fill="white"/>
+          <!-- Pétalos internos -->
+          <path class="paintable petalo-interno" d="M100,50 C130,50 145,75 145,100 C145,125 130,150 100,160 C70,150 55,125 55,100 C55,75 70,50 100,50 Z" fill="white"/>
+          <!-- Tallo principal -->
+          <path class="paintable tallo" d="M95,170 C95,200 95,250 95,290 L105,290 C105,250 105,200 105,170 Z" fill="white"/>
+          <!-- Hojas con nervaduras -->
+          <path class="paintable hoja" d="M95,200 Q45,180 65,140 Q75,130 85,180 Z" fill="white"/>
+          <path class="paintable hoja" d="M105,220 Q155,200 135,160 Q125,150 115,200 Z" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <path class="paintable petalo" d="M100,40 Q50,0 20,80 Q0,160 100,200" fill="white"/>
-                <path class="paintable petalo" d="M100,40 Q150,0 180,80 Q200,160 100,200" fill="white"/>
-                <rect class="paintable tallo" x="90" y="200" width="20" height="100" fill="white"/>
-                <path class="paintable hoja-1" d="M90,250 Q20,220 60,180" fill="white"/>
-                <path class="paintable hoja-2" d="M110,250 Q180,220 140,180" fill="white"/>
-            </svg>
-        </div>
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <path class="paintable petalo" d="M100,40 Q50,0 20,80 Q0,160 100,200" fill="white"/>
+          <path class="paintable petalo" d="M100,40 Q150,0 180,80 Q200,160 100,200" fill="white"/>
+          <rect class="paintable tallo" x="90" y="200" width="20" height="100" fill="white"/>
+          <path class="paintable hoja-1" d="M90,250 Q20,220 60,180" fill="white"/>
+          <path class="paintable hoja-2" d="M110,250 Q180,220 140,180" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <!-- Pétalos puntiagudos -->
-                <path class="paintable petalo" d="M100,30
-              C130,30 150,50 160,80
-              C170,110 160,140 100,170
-              C40,140 30,110 40,80
-              C50,50 70,30 100,30
-              Z" fill="white"/>
-                <!-- Pétalos internos estilizados -->
-                <path class="paintable petalo-interno" d="M100,40
-              C120,40 135,55 140,75
-              C145,95 135,115 100,140
-              C65,115 55,95 60,75
-              C65,55 80,40 100,40
-              Z" fill="white"/>
-                <!-- Tallo curvo -->
-                <path class="paintable tallo" d="M95,170
-              C95,200 90,250 95,290
-              L105,290
-              C110,250 105,200 105,170
-              Z" fill="white"/>
-                <!-- Hojas onduladas -->
-                <path class="paintable hoja" d="M90,210
-              Q30,190 50,150
-              Q60,140 80,190
-              Q85,200 90,210" fill="white"/>
-                <path class="paintable hoja" d="M110,230
-              Q170,210 150,170
-              Q140,160 120,210
-              Q115,220 110,230" fill="white"/>
-            </svg>
-        </div>
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <!-- Pétalos puntiagudos -->
+          <path class="paintable petalo" d="M100,30 C130,30 150,50 160,80 C170,110 160,140 100,170 C40,140 30,110 40,80 C50,50 70,30 100,30 Z" fill="white"/>
+          <!-- Pétalos internos estilizados -->
+          <path class="paintable petalo-interno" d="M100,40 C120,40 135,55 140,75 C145,95 135,115 100,140 C65,115 55,95 60,75 C65,55 80,40 100,40 Z" fill="white"/>
+          <!-- Tallo curvo -->
+          <path class="paintable tallo" d="M95,170 C95,200 90,250 95,290 L105,290 C110,250 105,200 105,170 Z" fill="white"/>
+          <!-- Hojas onduladas -->
+          <path class="paintable hoja" d="M90,210 Q30,190 50,150 Q60,140 80,190 Q85,200 90,210" fill="white"/>
+          <path class="paintable hoja" d="M110,230 Q170,210 150,170 Q140,160 120,210 Q115,220 110,230" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <path class="paintable petalo" d="M100,30 C60,30 20,60 20,100 C20,140 60,180 100,180" fill="white"/>
-                <path class="paintable petalo" d="M100,30 C140,30 180,60 180,100 C180,140 140,180 100,180"
-                      fill="white"/>
-                <rect class="paintable tallo" x="90" y="180" width="20" height="120" fill="white"/>
-                <path class="paintable hoja" d="M90,220 Q40,200 70,160" fill="white"/>
-                <path class="paintable hoja" d="M110,220 Q160,200 130,160" fill="white"/>
-            </svg>
-        </div>
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <path class="paintable petalo" d="M100,30 C60,30 20,60 20,100 C20,140 60,180 100,180" fill="white"/>
+          <path class="paintable petalo" d="M100,30 C140,30 180,60 180,100 C180,140 140,180 100,180" fill="white"/>
+          <rect class="paintable tallo" x="90" y="180" width="20" height="120" fill="white"/>
+          <path class="paintable hoja" d="M90,220 Q40,200 70,160" fill="white"/>
+          <path class="paintable hoja" d="M110,220 Q160,200 130,160" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <!-- Pétalos rizados -->
-                <path class="paintable petalo" d="M100,20
-              C140,20 170,50 170,90
-              C170,130 140,160 100,180
-              C60,160 30,130 30,90
-              C30,50 60,20 100,20
-              Z" fill="white"/>
-                <!-- Detalles de pétalos -->
-                <path class="paintable petalo-detalle" d="M100,35
-              C130,35 150,60 150,95
-              C150,130 130,150 100,165
-              C70,150 50,130 50,95
-              C50,60 70,35 100,35
-              Z" fill="white"/>
-                <!-- Tallo estilizado -->
-                <path class="paintable tallo" d="M95,180
-              C95,210 90,260 95,290
-              L105,290
-              C110,260 105,210 105,180
-              Z" fill="white"/>
-                <!-- Hojas decorativas -->
-                <path class="paintable hoja" d="M90,220
-              Q20,200 40,160
-              Q50,150 70,180
-              Q80,190 90,220" fill="white"/>
-                <path class="paintable hoja" d="M110,240
-              Q180,220 160,180
-              Q150,170 130,200
-              Q120,210 110,240" fill="white"/>
-            </svg>
-        </div>
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <!-- Pétalos rizados -->
+          <path class="paintable petalo" d="M100,20 C140,20 170,50 170,90 C170,130 140,160 100,180 C60,160 30,130 30,90 C30,50 60,20 100,20 Z" fill="white"/>
+          <!-- Detalles de pétalos -->
+          <path class="paintable petalo-detalle" d="M100,35 C130,35 150,60 150,95 C150,130 130,150 100,165 C70,150 50,130 50,95 C50,60 70,35 100,35 Z" fill="white"/>
+          <!-- Tallo estilizado -->
+          <path class="paintable tallo" d="M95,180 C95,210 90,260 95,290 L105,290 C110,260 105,210 105,180 Z" fill="white"/>
+          <!-- Hojas decorativas -->
+          <path class="paintable hoja" d="M90,220 Q20,200 40,160 Q50,150 70,180 Q80,190 90,220" fill="white"/>
+          <path class="paintable hoja" d="M110,240 Q180,220 160,180 Q150,170 130,200 Q120,210 110,240" fill="white"/>
+        </svg>
+      </div>
 
-        <div class="carousel-item">
-            <svg class="tulipan" viewBox="0 0 200 300">
-                <path class="paintable petalo" d="M100,40 Q50,0 20,80 Q0,160 100,200" fill="white"/>
-                <path class="paintable petalo" d="M100,40 Q150,0 180,80 Q200,160 100,200" fill="white"/>
-                <rect class="paintable tallo" x="90" y="200" width="20" height="100" fill="white"/>
-                <path class="paintable hoja-1" d="M90,250 Q20,220 60,180" fill="white"/>
-                <path class="paintable hoja-2" d="M110,250 Q180,220 140,180" fill="white"/>
-            </svg>
-        </div>
-
+      <div class="carousel-item">
+        <svg class="tulipan" viewBox="0 0 200 300">
+          <path class="paintable petalo" d="M100,40 Q50,0 20,80 Q0,160 100,200" fill="white"/>
+          <path class="paintable petalo" d="M100,40 Q150,0 180,80 Q200,160 100,200" fill="white"/>
+          <rect class="paintable tallo" x="90" y="200" width="20" height="100" fill="white"/>
+          <path class="paintable hoja-1" d="M90,250 Q20,220 60,180" fill="white"/>
+          <path class="paintable hoja-2" d="M110,250 Q180,220 140,180" fill="white"/>
+        </svg>
+      </div>
     </div>
-</div>
+  </div>
 
-<section id="paleta">
+  <section id="paleta">
     <h2>Paleta de colores</h2>
-    <div id="colores-container">
-        <!-- Opciones de color se generarán dinámicamente -->
-    </div>
-</section>
+    <div id="colores-container"></div>
+  </section>
 
-<!-- Modal -->
-<div id="love-modal" class="modal">
+  <!-- Modal de amor -->
+  <div id="love-modal" class="modal">
     <div class="modal-content">
-        <button class="close-modal">×</button>
-        <div class="mensaje-amor">💜 TE AMO 💜</div>
-        <img src="https://d1s5vnzdzzk6v7.cloudfront.net/Custom/Content/Products/12/25/122580_luminaria-coracao-led-snoopy-te-amo_l1_638446296165523936.png"
-             alt="Snoopy Te Ama, como yo a ti.">
-        <div class="mensaje-amor">Snoopy Te Ama, como yo a ti. ❤️</div>
+      <button class="close-modal">×</button>
+      <div class="mensaje-amor">💜 TE AMO 💜</div>
+      <img
+        src="https://d1s5vnzdzzk6v7.cloudfront.net/Custom/Content/Products/12/25/122580_luminaria-coracao-led-snoopy-te-amo_l1_638446296165523936.png"
+        alt="Snoopy Te Ama, como yo a ti."
+      />
+      <div class="mensaje-amor">Snoopy Te Ama, como yo a ti. ❤️</div>
     </div>
-</div>
+  </div>
 
-<audio id="complete-sound"
-       src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAABQAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/jOMAAAAAAAAAAAABJbmZvAAAADwAAAAMAAAEUAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV"
-       type="audio/mp3"></audio>
-
-<script>
-    // Variable global para almacenar el tulipán completado
-    let ultimoTulipanCompleto = null;
-    let colorSeleccionado = null;
-    let currentSlide = 0;
-    const carousel = document.querySelector('.carousel');
-    const slides = document.querySelectorAll('.carousel-item');
-    const totalSlides = slides.length;
-
-    // Generar opciones de color
-    const colores = [
-        '#FF0000', '#FF4500', '#FFA500', '#FFD700', '#FFFF00',
-        '#9ACD32', '#32CD32', '#00FF00', '#008000', '#006400',
-        '#00FFFF', '#00CED1', '#1E90FF', '#0000FF', '#000080',
-        '#800080', '#8B008B', '#FF00FF', '#FF69B4', '#FFC0CB',
-        '#8B4513', '#A0522D', '#DEB887', '#F5F5DC', '#FFFFFF', 'BLACK'
-    ];
-
-    const coloresContainer = document.getElementById('colores-container');
-    colores.forEach(color => {
-        const div = document.createElement('div');
-        div.className = 'color-option';
-        div.style.backgroundColor = color;
-        coloresContainer.appendChild(div);
-    });
-
-    // Selección de color
-    document.querySelectorAll('.color-option').forEach(color => {
-        color.addEventListener('click', () => {
-            colorSeleccionado = color.style.backgroundColor;
-            document.querySelectorAll('.color-option').forEach(c =>
-                c.style.border = '2px solid white'
-            );
-            color.style.border = '2px solid gold';
-        });
-    });
-
-    // Función del carrusel
-    function updateCarousel() {
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    document.querySelector('.prev').addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateCarousel();
-    });
-
-    document.querySelector('.next').addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateCarousel();
-    });
-
-    // Función para crear estrellas alrededor del elemento
-    function createSparkles(element) {
-        const rect = element.getBoundingClientRect();
-        for (let i = 0; i < 10; i++) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = `${rect.left + Math.random() * rect.width}px`;
-            sparkle.style.top = `${rect.top + Math.random() * rect.height}px`;
-            sparkle.innerHTML = '⭐';
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 1000);
-        }
-    }
-
-    // Pintar el tulipán y verificar cuando esté completo
-    document.querySelectorAll('.tulipan').forEach(tulipan => {
-        tulipan.addEventListener('click', (e) => {
-            if (colorSeleccionado && e.target.classList.contains('paintable')) {
-                e.target.style.fill = colorSeleccionado;
-
-                const currentTulipan = e.target.closest('.tulipan');
-                const elementosPintados = [...currentTulipan.querySelectorAll('.paintable')]
-                    .filter(el => el.style.fill && el.style.fill !== 'white').length;
-                const totalElementos = currentTulipan.querySelectorAll('.paintable').length;
-
-                if (elementosPintados === totalElementos) {
-                    ultimoTulipanCompleto = currentTulipan;
-                    document.getElementById('complete-sound').play();
-                    // Mostrar el modal (sin crear estrellas aún)
-                    document.getElementById('love-modal').style.display = 'block';
-                }
-            }
-        });
-    });
-
-    // Cerrar modal únicamente con el botón de la "×" y luego crear las estrellas
-    document.querySelector('.close-modal').addEventListener('click', () => {
-        document.getElementById('love-modal').style.display = 'none';
-        if (ultimoTulipanCompleto) {
-            createSparkles(ultimoTulipanCompleto);
-            ultimoTulipanCompleto = null;
-        }
-    });
-</script>
+  <!-- Enlazamos nuestro archivo JS (al final del body) -->
+  <script src="./js/main.js"></script>
 </body>
 </html>

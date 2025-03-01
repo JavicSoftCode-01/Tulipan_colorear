@@ -1,0 +1,259 @@
+/* ------------------------- 
+   Estilos globales
+------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Times New Roman", sans-serif;
+    text-align: center;
+    background-color: #1a001a;
+    color: #fff;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'%3E%3Cpath fill='blue' d='M20 6.91L17.09 4a2.92 2.92 0 0 0-4.11 0L2.25 14.73a1 1 0 0 0-.25.61V20a1 1 0 0 0 1 1h4.66a1 1 0 0 0 .61-.25L19 10.02a2.92 2.92 0 0 0 0-4.11zM7.02 19H4v-3.02l9.73-9.73 3.02 3.02z'/%3E%3C/svg%3E") 0 32,
+      auto;
+  }
+  
+  /* ------------------------- 
+     Carrusel
+  ------------------------- */
+  .carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carousel-item {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(128, 0, 128, 0.7);
+    border: none;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 2;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  /* ------------------------- 
+     Paleta de colores
+  ------------------------- */
+  #colores-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+  }
+  
+  .color-option {
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .color-option:hover {
+    transform: scale(1.2);
+  }
+  
+  /* ------------------------- 
+     Tulipanes
+  ------------------------- */
+  .tulipan {
+    width: 300px;
+    height: 400px;
+    padding-bottom: 20px;
+    border-radius: 5%;
+    background-color: #311A31;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  }
+  
+  .paintable {
+    transition: fill 0.5s ease;
+  }
+  
+  .paintable:hover {
+    filter: brightness(1.2);
+  }
+  
+  /* Efecto de estrella */
+  .sparkle {
+    position: absolute;
+    pointer-events: none;
+    animation: sparkle 1s linear forwards;
+  }
+  
+  @keyframes sparkle {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5) rotate(180deg);
+      opacity: 0;
+    }
+  }
+  
+  /* ------------------------- 
+     Modal
+  ------------------------- */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #2a002a;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 90%;
+    width: 500px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    animation: scaleIn 0.3s ease;
+  }
+  
+  .close-modal {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+  }
+  
+  .close-modal:hover {
+    color: #ff69b4;
+  }
+  
+  .modal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* ------------------------- 
+     Mensaje de amor
+  ------------------------- */
+  .mensaje-amor {
+    font-size: 24px;
+    color: #ff69b4;
+    margin: 20px 0;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* -------------------------
+     Responsividad
+     - Puedes adaptar tus breakpoints según necesites
+  ------------------------- */
+  
+  /* Para pantallas pequeñas (por defecto) */
+  @media (max-width: 600px) {
+    .modal-content {
+      margin: 5% auto;
+      width: 85%;
+    }
+  
+    .mensaje-amor {
+      font-size: 20px;
+    }
+  
+    .tulipan {
+      width: 250px;
+      height: 320px;
+    }
+  }
+  
+  /* Para pantallas medianas */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .tulipan {
+      width: 280px;
+      height: 360px;
+    }
+  }
+  
+  /* Para pantallas grandes */
+  @media (min-width: 1025px) {
+    .tulipan {
+      width: 300px;
+      height: 400px;
+    }
+  }  

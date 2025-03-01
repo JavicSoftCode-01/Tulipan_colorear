@@ -1,0 +1,45 @@
+¡Bienvenido a Tulipanes Mágicos! Este proyecto es una aplicación web interactiva que permite a los usuarios pintar tulipanes virtuales utilizando una paleta de colores. Además, cuenta con un carrusel de tulipanes y un mensaje especial de amor cuando se completa la pintura de un tulipán.
+
+## Estructura del Proyecto
+
+El proyecto tiene la siguiente estructura de archivos:
+
+```
+TULIPAN_COLOREAR
+    index.html
+    css/
+        styles.css
+    js/
+     main.js
+```
+
+### Archivos
+
+- **index.html**: Contiene la estructura HTML de la página, incluyendo el carrusel de tulipanes, la paleta de colores y el modal de amor.
+- **css/styles.css**: Contiene los estilos CSS para la página, incluyendo el diseño del carrusel, la paleta de colores, los tulipanes y el modal.
+- **js/main.js**: Contiene el código JavaScript que maneja la lógica de la aplicación, incluyendo la selección de colores, la navegación del carrusel, la pintura de los tulipanes y la visualización del modal.
+
+## Funcionalidades
+
+1. **Carrusel de Tulipanes**: Un carrusel que permite navegar entre diferentes tulipanes utilizando botones de navegación.
+2. **Paleta de Colores**: Una paleta de colores que permite a los usuarios seleccionar un color para pintar los tulipanes.
+3. **Pintura de Tulipanes**: Los usuarios pueden hacer clic en las partes de los tulipanes para pintarlas con el color seleccionado.
+4. **Efecto de Estrellas**: Un efecto visual de estrellas que aparece alrededor del tulipán cuando se completa la pintura.
+5. **Modal de Amor**: Un modal que muestra un mensaje especial de amor cuando se completa la pintura de un tulipán.
+
+## Cómo Ejecutar el Proyecto
+
+1. Clona este repositorio en tu máquina local.
+2. Abre el archivo index.html en tu navegador web.
+
+## Tecnologías Utilizadas
+
+- HTML
+- CSS
+- JavaScript
+
+## Autor
+
+JavicSoftCode-01
+
+¡Disfruta pintando tus tulipanes mágicos! 🌷
